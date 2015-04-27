@@ -38,6 +38,7 @@ public class login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         EntityManager em = DatabaseInfo.getEntityManager();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -45,7 +46,7 @@ public class login extends HttpServlet {
         Collection<User> list = q.getResultList();  
         em.close();
         if(list.isEmpty()) {
-            request.getSession().setAttribute("messages", "Username tidak terdaftar");
+            session.setAttribute("message", "Username tidak terdaftar");
             response.sendRedirect(request.getContextPath());
             return;
         }
@@ -53,17 +54,18 @@ public class login extends HttpServlet {
         for(User user : list) {
             if(user.getUsername().equals(username)) {
                 if(user.getPassword().equals(password)) {
-                    response.sendRedirect(request.getContextPath());
-                    HttpSession session = request.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("role", "user");
+                    response.sendRedirect(request.getContextPath());
+                    return;
                 } else {
-                    request.getSession().setAttribute("messages", "Kombinasi Username dan Password salah");
+                    session.setAttribute("message", "Kombinasi Username dan Password salah");
                     response.sendRedirect(request.getContextPath());
                     return;
                 }
             } else {
                 response.sendRedirect(request.getContextPath());
+                return;
             }
         }
     }

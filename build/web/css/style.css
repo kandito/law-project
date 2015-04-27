@@ -1598,3 +1598,16 @@ p.para{
 .label-value {
     color: #777;
 }
+
+.alert {
+    display: box;
+    background: #f9f200;
+    color: #996004;
+    font-size: 1.8em;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}

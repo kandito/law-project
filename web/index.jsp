@@ -45,12 +45,21 @@
         <div class="main_bg">
             <div class="wrap">
                 <div class="main">
-
+                    <%
+                        String message = (String) session.getAttribute("message");
+                        session.removeAttribute("message");
+                        message = "Username terdaftar";
+                        if (message != null) {
+                    %>
+                    <div class="alert"><%= message%></div>
+                    <br>
+                    <% } %>
+                    
                     <% if (session.getAttribute("username") != null) {%>
                     <h2 style="font-size: 3em;">Selamat Datang, <%= session.getAttribute("username")%></h2>
                     <% } else {%>
                     <div class="login-wrap">
-                        <h2 class="style top">Login</h2><br>				
+                        <h2 class="style top">Login</h2><br>
                         <form action="<%= request.getContextPath()%>/user/login" method="POST" class="form-login">
                             Username : <input type="text" name="username" required><br>
                             Password : <input type="password" name="password" required><br>
@@ -63,12 +72,6 @@
                     <div class="register-wrap">
                         <h2 class="style top">Register</h2><br>				
                         <form action="<%= request.getContextPath()%>/user/register" method="POST" accept-charset="utf-8">
-                            <% 
-                            String message = (String) session.getAttribute("message");
-                            if(message != null) {
-                            %>
-                            <strong><%= message %></strong>
-                            <% } %>
                             <table style="width:100%;" class="form-register">
                                 <tr>
                                     <td>
@@ -124,7 +127,7 @@
                         <div class="grids_of_3">
                             <% }%>
                             <div class="grid1_of_3">
-                                <a href="${pageContext.request.contextPath}/alat/detail.jsp?id=<%= alat.getIdAlat() %>">
+                                <a href="${pageContext.request.contextPath}/alat/detail.jsp?id=<%= alat.getIdAlat()%>">
                                     <img src="${pageContext.request.contextPath}/gambar/<%= alat.getGambar()%>" alt=""/>
                                     <h3><%= alat.getNama()%></h3>
                                     <div class="price" >
@@ -148,7 +151,7 @@
                         <div class="clear"></div>
                     </div>
                     <div class="price">
-                        <a href="<%= request.getContextPath() %>/alat" title=""><h4><span>Selengkapnya</span></h4></a>
+                        <a href="<%= request.getContextPath()%>/alat" title=""><h4><span>Selengkapnya</span></h4></a>
                     </div>
                 </div><!-- END wrap class -->
             </div><!-- END main_bg-->

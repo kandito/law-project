@@ -50,6 +50,7 @@ public class register extends HttpServlet {
         Collection<Admin> listAdmin = qadmin.getResultList();
         
         if (!listUser.isEmpty() || !listAdmin.isEmpty()) {
+            request.getSession().setAttribute("message", "Username sudah terdaftar");
             response.sendRedirect(request.getContextPath());
         } else {
             User user = new User();
@@ -59,6 +60,7 @@ public class register extends HttpServlet {
             user.setEmail(request.getParameter("email"));
             user.setOrganisasi(request.getParameter("organisasi"));
             if (!password.equals(repeat_password)) {
+                request.getSession().setAttribute("message", "Password tidak sama");
                 response.sendRedirect(request.getContextPath());
                 return;
             }
@@ -70,6 +72,7 @@ public class register extends HttpServlet {
             em.persist(user);
             tx.commit();
             em.close();
+            request.getSession().setAttribute("message", "Pendaftaran berhasil, silahkan login");
             response.sendRedirect(request.getContextPath());
         }
         
