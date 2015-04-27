@@ -48,7 +48,6 @@
                     <%
                         String message = (String) session.getAttribute("message");
                         session.removeAttribute("message");
-                        message = "Username terdaftar";
                         if (message != null) {
                     %>
                     <div class="alert"><%= message%></div>
