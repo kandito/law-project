@@ -39,8 +39,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Alat.findByNama", query = "SELECT a FROM Alat a WHERE a.nama = :nama"),
     @NamedQuery(name = "Alat.findByBiaya", query = "SELECT a FROM Alat a WHERE a.biaya = :biaya"),
     @NamedQuery(name = "Alat.findByGambar", query = "SELECT a FROM Alat a WHERE a.gambar = :gambar"),
-    @NamedQuery(name = "Alat.findByJumlah", query = "SELECT a FROM Alat a WHERE a.jumlah = :jumlah")})
+    @NamedQuery(name = "Alat.findByJumlah", query = "SELECT a FROM Alat a WHERE a.jumlah = :jumlah"),
+    @NamedQuery(name = "Alat.findByJumlahTersedia", query = "SELECT a FROM Alat a WHERE a.jumlahTersedia = :jumlahTersedia")})
+
 public class Alat implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "jumlah_tersedia")
+    private int jumlahTersedia;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,6 +97,7 @@ public class Alat implements Serializable {
         this.biaya = biaya;
         this.gambar = gambar;
         this.jumlah = jumlah;
+        this.jumlahTersedia = jumlah;
     }
 
     public Integer getIdAlat() {
@@ -198,6 +204,14 @@ public class Alat implements Serializable {
     @Override
     public String toString() {
         return "models.Alat[ idAlat=" + idAlat + " ]";
+    }
+
+    public int getJumlahTersedia() {
+        return jumlahTersedia;
+    }
+
+    public void setJumlahTersedia(int jumlahTersedia) {
+        this.jumlahTersedia = jumlahTersedia;
     }
     
 }
