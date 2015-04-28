@@ -47,10 +47,10 @@ public class PeminjamanItem implements Serializable {
     private int jumlah;
     @JoinColumn(name = "id_peminjaman", referencedColumnName = "id_peminjaman")
     @ManyToOne(optional = false)
-    private Peminjaman idPeminjaman;
+    private Integer idPeminjaman;
     @JoinColumn(name = "id_alat", referencedColumnName = "id_alat")
     @ManyToOne(optional = false)
-    private Alat idAlat;
+    private Integer idAlat;
 
     public PeminjamanItem() {
     }
@@ -89,19 +89,19 @@ public class PeminjamanItem implements Serializable {
         this.jumlah = jumlah;
     }
 
-    public Peminjaman getIdPeminjaman() {
+    public Integer getIdPeminjaman() {
         return idPeminjaman;
     }
 
-    public void setIdPeminjaman(Peminjaman idPeminjaman) {
+    public void setIdPeminjaman(Integer idPeminjaman) {
         this.idPeminjaman = idPeminjaman;
     }
 
-    public Alat getIdAlat() {
+    public Integer getIdAlat() {
         return idAlat;
     }
 
-    public void setIdAlat(Alat idAlat) {
+    public void setIdAlat(Integer idAlat) {
         this.idAlat = idAlat;
     }
 
