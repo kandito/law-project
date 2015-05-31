@@ -41,11 +41,17 @@
                             <div class="grid1_of_3">
                                 <a href="${pageContext.request.contextPath}/alat/detail.jsp?id=<%= alat.getIdAlat() %>">
                                     <img src="${pageContext.request.contextPath}/gambar/<%= alat.getGambar() %>" alt=""/>
-					<h3><%= alat.getNama() %></h3>
-					<div class="price" >
-						<h4>Rp <%= alat.getBiaya() %>/hari<span style="background:red;">Tersedia</span></h4>
-					</div>
-					<span class="b_btm"></span>
+                                    <h3><%= alat.getNama() %></h3>
+                                    <div class="price" >
+                                        <h4>Rp <%= alat.getBiaya() %>/hari
+                                        <% if(alat.getJumlahTersedia() > 0) { %>
+                                            <span style="background:green;">Tersedia</span>
+                                        <% } else { %>
+                                            <span style="background:red;">Tidak Tersedia</span>
+                                        <% } %>
+                                        </h4>
+                                    </div>
+                                    <span class="b_btm"></span>
 				</a>
                             </div>
                         

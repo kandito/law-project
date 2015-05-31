@@ -68,39 +68,36 @@
                                     <a href="index.jsp">Kembali</a>
                                     <hr>
                                     <div class="available">
-                                        <h4>Available Options :</h4>
-                                        <% if (session.getAttribute("username") != null && session.getAttribute("role").equals("user")) {%>
-                                        <ul>
-                                            <li>Jumlah:
-                                                <select>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </li>
-                                        </ul>
-                                        <div class="btn_form">
-                                            <!-- <form method="GET"> -->
-                                                <input type="submit" value="ADD TO CART" title="" />
-                                            <!-- </form> -->
-                                        </div>
-                                        <div class="clear"></div><br>
-                                        <h2 style="color: red;">STATUS TERSEDIA </h2>
-                                        <p>Barang akan ditambahkan ke keranjang belanja. Bila sudah checkout maka barang akan dilihat untuk disetujui oleh admin terlebih dahulu</p>
-
-
+                                        <% if(alat.getJumlahTersedia() > 0) { %>
+                                            <h4>Available Options : </h4>
+                                            <h2 style="color: green;">Tersedia</h2><br/>
+                                            <% if (session.getAttribute("username") != null && session.getAttribute("role").equals("user")) {%>
+                                                <form action="<%= request.getContextPath()%>/peminjamanitem/create" method="get"> 
+                                                    Jumlah:
+                                                    <select name="jumlah_pinjam">
+                                                        <% for(int i=1; i<=alat.getJumlahTersedia(); i++) { %>
+                                                            <option value="<%= i %>"><%= i %></option>
+                                                        <% } %>
+                                                    </select>
+                                                    <input type="hidden" name="id_alat" value="<%= alat.getIdAlat()%>">
+                                                    <div class="btn_form">
+                                                        <input type="submit" value="ADD TO CART" title="" />
+                                                    </div>
+                                                </form>
+                                                <div class="clear"></div><br>
+                                            <% } else { %>
+                                                <ul>
+                                                    <li>Silahkan login untuk meminjam
+                                                    </li>
+                                                </ul>
+                                                <div class="clear"></div><br>  
+                                            <% }%>
+                                            <p>Barang akan ditambahkan ke keranjang belanja. Bila sudah checkout maka barang akan dilihat untuk disetujui oleh admin terlebih dahulu</p>
                                         <% } else { %>
-                                        <ul>
-                                            <li>Silahkan login untuk meminjam
-                                            </li>
-                                        </ul>
-                                        <div class="clear"></div><br>
-                                        <h2 style="color: red;">STATUS TERSEDIA </h2>
-                                        <p>Barang akan ditambahkan ke keranjang belanja. Bila sudah checkout maka barang akan dilihat untuk disetujui oleh admin terlebih dahulu</p>
-
-                                        <% }%>
+                                            <h4>Available Options : </h4>
+                                            <h2 style="color: red;">Tidak Tersedia</h2>
+                                        <% } %>
+                                        
                                     </div>
                                     <div class="clear"></div>
                                 </div>

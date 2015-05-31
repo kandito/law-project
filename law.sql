@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Apr 2015 pada 09.10
+-- Generation Time: 28 Apr 2015 pada 06.47
 -- Versi Server: 5.6.16
--- PHP Version: 5.5.9
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `alat` (
   `biaya` bigint(20) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `jumlah` int(11) NOT NULL,
+  `jumlah_tersedia` int(11) NOT NULL,
   PRIMARY KEY (`id_alat`),
   KEY `id_kategori` (`id_kategori`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
@@ -67,11 +68,11 @@ CREATE TABLE IF NOT EXISTS `alat` (
 -- Dumping data untuk tabel `alat`
 --
 
-INSERT INTO `alat` (`id_alat`, `kode_alat`, `nama`, `spesifikasi`, `keterangan`, `id_kategori`, `biaya`, `gambar`, `jumlah`) VALUES
-(2, '1111', 'Tenda', 'Bahan bagus', 'Tenda tenda', 1, 50000, 'tenda.png', 10),
-(3, '1212121', 'Tongkat', 'Stenless', 'Cocok untuk naik gunung bersalju.', 1, 10000, 'tongkat.jpg', 20),
-(7, 'A123', 'Sepatu Gunung', '', '', 1, 10000, 'sepatu-gunung.jpg', 0),
-(8, 'A124', 'Kompor Minyak', 'Kompor baru', 'Kompor paling keren', 2, 5000, 'kompor.jpg', 10);
+INSERT INTO `alat` (`id_alat`, `kode_alat`, `nama`, `spesifikasi`, `keterangan`, `id_kategori`, `biaya`, `gambar`, `jumlah`, `jumlah_tersedia`) VALUES
+(2, '1111', 'Tenda', 'Bahan bagus', 'Tenda tenda', 6, 50000, 'tenda.png', 10, 10),
+(3, '1212121', 'Tongkat', 'Stenless', 'Cocok untuk naik gunung bersalju.', 6, 10000, 'tongkat.jpg', 20, 20),
+(7, 'A123', 'Sepatu Gunung', '', '', 6, 10000, 'sepatu-gunung.jpg', 0, 0),
+(8, 'A124', 'Kompor', 'Kompor baru', 'Kompor paling keren', 6, 5000, 'kompor.jpg', 10, 10);
 
 -- --------------------------------------------------------
 
@@ -90,8 +91,14 @@ CREATE TABLE IF NOT EXISTS `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama`) VALUES
-(1, 'Kategori1'),
-(2, 'Kategori2');
+(1, 'Climbing'),
+(2, 'Caving'),
+(3, 'Rafting'),
+(4, 'Diving'),
+(5, 'Paralayang'),
+(6, 'Mountaineering'),
+(7, 'Rescue'),
+(8, 'Other');
 
 -- --------------------------------------------------------
 
@@ -161,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `alamat` text NOT NULL,
   `nomor_telepon` varchar(13) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data untuk tabel `user`
@@ -169,7 +176,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `nama_lengkap`, `password`, `email`, `organisasi`, `alamat`, `nomor_telepon`) VALUES
 (5, 'kandito.agung', 'Kandito', '', 'kanditoaw@gmail.com', 'Fasilkom', 'Bekasi', '085697111580'),
-(7, 'kandito12', 'Kandito', '123123', 'kanditoaw@gmail.com', 'Fasilkom', '', '085697111580');
+(7, 'kandito12', 'Kandito', '123123', 'kanditoaw@gmail.com', 'Fasilkom', '', '085697111580'),
+(8, 'satria.ramadhan', 'Satria Ramadhan', 'satria', 'satria.ramadhan@ui.ac.id', 'Mapala UI', 'Depok', '08995419392');
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
