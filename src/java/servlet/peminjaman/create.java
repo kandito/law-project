@@ -68,10 +68,13 @@ public class create extends HttpServlet {
             Logger.getLogger(create.class.getName()).log(Level.SEVERE, null, ex);
         }
         peminjaman.setKeterangan(request.getParameter("keterangan"));
+        peminjaman.setTotalBiaya(cart.getTotalBiaya());
         
         em.persist(peminjaman);
         
         HashMap<Integer, Integer> items = cart.getCartItem();
+        
+        long total_biaya = 0;
         for (int key : items.keySet()) {
             Alat alat = em.find(Alat.class, key);
             PeminjamanItem pi = new PeminjamanItem();
@@ -81,7 +84,7 @@ public class create extends HttpServlet {
             pi.setIdPeminjaman(peminjaman);
             em.persist(pi);
         }
-
+        
         tx.commit();
         em.close();
         

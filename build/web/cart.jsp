@@ -21,28 +21,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%
-            EntityManager em = DatabaseInfo.getEntityManager();
-            int id = 0;
-            try {
-                String ids = request.getParameter("id");
-                if (ids == null) {
-                    response.sendRedirect(request.getContextPath() + "/admin/alat/index.jsp");
-                    return;
-                } else {
-                    id = Integer.parseInt(ids);
-                }
-
-            } catch (Exception ex) {
-                response.sendRedirect(request.getContextPath() + "/admin/alat/index.jsp");
-                return;
+            String username = (String) session.getAttribute("username");
+            if(username == null) {
+                response.sendRedirect(request.getContextPath());
             }
-
-            if (id == 0) {
-                response.sendRedirect(request.getContextPath() + "/admin/alat/index.jsp");
-                return;
-            }
-            Alat alat = em.find(Alat.class, id);
-            em.close();
         %>
         <title>Cart - Sistem Peminjaman Mapala UI</title>
         <%@include file="/partial/head.jsp" %>

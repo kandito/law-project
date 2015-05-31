@@ -7,6 +7,9 @@
 package helper;
 
 import java.util.HashMap;
+import javax.persistence.EntityManager;
+import models.Alat;
+import models.DatabaseInfo;
 
 /**
  *
@@ -30,5 +33,15 @@ public class Cart {
 
     public void removeCart(int id) {
         this.cartItem.remove(id);
+    }
+
+    public long getTotalBiaya() {
+        EntityManager em = DatabaseInfo.getEntityManager();
+        long total = 0;
+        for (int key : this.cartItem.keySet()) {
+            Alat alat = em.find(Alat.class, key);
+            total += alat.getBiaya() * this.cartItem.get(key);
+        }
+        return total;
     }
 }
