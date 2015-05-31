@@ -3,29 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package servlet.peminjaman;
 
-package servlet.user;
-
+import helper.Cart;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Alat;
 import models.DatabaseInfo;
+import models.Peminjaman;
+import models.PeminjamanItem;
 import models.User;
 
 /**
  *
  * @author Kandito Agung
  */
-@WebServlet(name = "userlogin", urlPatterns = {"/user/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "peminjamancreate", urlPatterns = {"/peminjaman/create"})
+public class create extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,37 +46,47 @@ public class login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         EntityManager em = DatabaseInfo.getEntityManager();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        Query q = em.createNamedQuery("User.findByUsername").setParameter("username", username);
-        Collection<User> list = q.getResultList();  
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        Peminjaman peminjaman = new Peminjaman();
+        int id_user = (Integer) session.getAttribute("id");
+        peminjaman.setIdUser(em.find(User.class, id_user));
+
+        String inputStr = "11-11-2012";
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String tanggal_balik = request.getParameter("tanggal_balik");
+        String tanggal_pinjam = request.getParameter("tanggal_pinjam");
+        try {
+            peminjaman.setTanggalBalik(dateFormat.parse(tanggal_balik));
+            peminjaman.setTanggalPinjam(dateFormat.parse(tanggal_pinjam));
+        } catch (ParseException ex) {
+            Logger.getLogger(create.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        peminjaman.setKeterangan(request.getParameter("keterangan"));
+        
+        em.persist(peminjaman);
+        
+        HashMap<Integer, Integer> items = cart.getCartItem();
+        for (int key : items.keySet()) {
+            Alat alat = em.find(Alat.class, key);
+            PeminjamanItem pi = new PeminjamanItem();
+            pi.setIdAlat(alat);
+            pi.setJumlah(items.get(key));
+            pi.setKeterangan("");
+            pi.setIdPeminjaman(peminjaman);
+            em.persist(pi);
+        }
+
+        tx.commit();
         em.close();
-        if(list.isEmpty()) {
-            session.setAttribute("message", "Username tidak terdaftar");
-            response.sendRedirect(request.getContextPath());
-            return;
-        }
-      
-        for(User user : list) {
-            if(user.getUsername().equals(username)) {
-                if(user.getPassword().equals(password)) {
-                    session.setAttribute("username", username);
-                    session.setAttribute("id", user.getIdUser());
-                    session.setAttribute("role", "user");
-                    response.sendRedirect(request.getContextPath());
-                    return;
-                } else {
-                    session.setAttribute("message", "Kombinasi Username dan Password salah");
-                    response.sendRedirect(request.getContextPath());
-                    return;
-                }
-            } else {
-                response.sendRedirect(request.getContextPath());
-                return;
-            }
-        }
+        
+        session.setAttribute("cart", null);
+        response.sendRedirect(request.getContextPath() + "/history.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

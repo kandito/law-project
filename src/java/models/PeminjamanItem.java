@@ -45,12 +45,12 @@ public class PeminjamanItem implements Serializable {
     @Basic(optional = false)
     @Column(name = "jumlah")
     private int jumlah;
-    @JoinColumn(name = "id_peminjaman", referencedColumnName = "id_peminjaman")
-    @ManyToOne(optional = false)
-    private Integer idPeminjaman;
     @JoinColumn(name = "id_alat", referencedColumnName = "id_alat")
     @ManyToOne(optional = false)
-    private Integer idAlat;
+    private Alat idAlat;
+    @JoinColumn(name = "id_peminjaman", referencedColumnName = "id_peminjaman")
+    @ManyToOne(optional = false)
+    private Peminjaman idPeminjaman;
 
     public PeminjamanItem() {
     }
@@ -89,20 +89,20 @@ public class PeminjamanItem implements Serializable {
         this.jumlah = jumlah;
     }
 
-    public Integer getIdPeminjaman() {
-        return idPeminjaman;
-    }
-
-    public void setIdPeminjaman(Integer idPeminjaman) {
-        this.idPeminjaman = idPeminjaman;
-    }
-
-    public Integer getIdAlat() {
+    public Alat getIdAlat() {
         return idAlat;
     }
 
-    public void setIdAlat(Integer idAlat) {
+    public void setIdAlat(Alat idAlat) {
         this.idAlat = idAlat;
+    }
+
+    public Peminjaman getIdPeminjaman() {
+        return idPeminjaman;
+    }
+
+    public void setIdPeminjaman(Peminjaman idPeminjaman) {
+        this.idPeminjaman = idPeminjaman;
     }
 
     @Override

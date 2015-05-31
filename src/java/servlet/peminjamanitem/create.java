@@ -6,17 +6,14 @@
 
 package servlet.peminjamanitem;
 
+import helper.Cart;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.DatabaseInfo;
-import models.PeminjamanItem;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,19 +33,21 @@ public class create extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EntityManager em = DatabaseInfo.getEntityManager();
-        PeminjamanItem  pi = new PeminjamanItem();
-        pi.setIdAlat(Integer.parseInt(request.getParameter("id_alat")));
-        pi.setJumlah(Integer.parseInt(request.getParameter("jumlah_pinjam")));
-        pi.setIdPeminjaman(Integer.parseInt(request.getParameter("id_peminjaman")));
+        HttpSession session = request.getSession();
+        Cart cart;
+        cart = (Cart) session.getAttribute("cart");
         
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(pi);
-        tx.commit();
-        em.close();
-        response.sendRedirect(request.getContextPath());
+        if(cart == null) {
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
         
+        int amount = Integer.parseInt(request.getParameter("jumlah_pinjam"));
+        int id = Integer.parseInt(request.getParameter("id_alat"));
+        
+        cart.addCart(id, amount);
+        
+        response.sendRedirect(request.getContextPath() + "/cart.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

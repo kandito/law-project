@@ -4,28 +4,23 @@
  * and open the template in the editor.
  */
 
-package servlet.user;
+package servlet.peminjamanitem;
 
+import helper.Cart;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collection;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.DatabaseInfo;
-import models.User;
 
 /**
  *
  * @author Kandito Agung
  */
-@WebServlet(name = "userlogin", urlPatterns = {"/user/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "removeCart", urlPatterns = {"/removeCart"})
+public class removeCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,36 +34,19 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        EntityManager em = DatabaseInfo.getEntityManager();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        Query q = em.createNamedQuery("User.findByUsername").setParameter("username", username);
-        Collection<User> list = q.getResultList();  
-        em.close();
-        if(list.isEmpty()) {
-            session.setAttribute("message", "Username tidak terdaftar");
-            response.sendRedirect(request.getContextPath());
-            return;
+        Cart cart;
+        cart = (Cart) session.getAttribute("cart");
+        
+        if(cart == null) {
+            cart = new Cart();
+            response.sendRedirect(request.getContextPath() + "/");
         }
-      
-        for(User user : list) {
-            if(user.getUsername().equals(username)) {
-                if(user.getPassword().equals(password)) {
-                    session.setAttribute("username", username);
-                    session.setAttribute("id", user.getIdUser());
-                    session.setAttribute("role", "user");
-                    response.sendRedirect(request.getContextPath());
-                    return;
-                } else {
-                    session.setAttribute("message", "Kombinasi Username dan Password salah");
-                    response.sendRedirect(request.getContextPath());
-                    return;
-                }
-            } else {
-                response.sendRedirect(request.getContextPath());
-                return;
-            }
-        }
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        cart.removeCart(id);
+        
+        response.sendRedirect(request.getContextPath() + "/cart.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

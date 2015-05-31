@@ -41,11 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Alat.findByGambar", query = "SELECT a FROM Alat a WHERE a.gambar = :gambar"),
     @NamedQuery(name = "Alat.findByJumlah", query = "SELECT a FROM Alat a WHERE a.jumlah = :jumlah"),
     @NamedQuery(name = "Alat.findByJumlahTersedia", query = "SELECT a FROM Alat a WHERE a.jumlahTersedia = :jumlahTersedia")})
-
 public class Alat implements Serializable {
-    @Basic(optional = false)
-    @Column(name = "jumlah_tersedia")
-    private int jumlahTersedia;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,11 +71,14 @@ public class Alat implements Serializable {
     @Basic(optional = false)
     @Column(name = "jumlah")
     private int jumlah;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlat")
-    private Collection<PeminjamanItem> peminjamanItemCollection;
+    @Basic(optional = false)
+    @Column(name = "jumlah_tersedia")
+    private int jumlahTersedia;
     @JoinColumn(name = "id_kategori", referencedColumnName = "id_kategori")
     @ManyToOne(optional = false)
     private Kategori idKategori;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlat")
+    private Collection<PeminjamanItem> peminjamanItemCollection;
 
     public Alat() {
     }
@@ -88,7 +87,7 @@ public class Alat implements Serializable {
         this.idAlat = idAlat;
     }
 
-    public Alat(Integer idAlat, String kodeAlat, String nama, String spesifikasi, String keterangan, long biaya, String gambar, int jumlah) {
+    public Alat(Integer idAlat, String kodeAlat, String nama, String spesifikasi, String keterangan, long biaya, String gambar, int jumlah, int jumlahTersedia) {
         this.idAlat = idAlat;
         this.kodeAlat = kodeAlat;
         this.nama = nama;
@@ -97,7 +96,7 @@ public class Alat implements Serializable {
         this.biaya = biaya;
         this.gambar = gambar;
         this.jumlah = jumlah;
-        this.jumlahTersedia = jumlah;
+        this.jumlahTersedia = jumlahTersedia;
     }
 
     public Integer getIdAlat() {
@@ -164,13 +163,12 @@ public class Alat implements Serializable {
         this.jumlah = jumlah;
     }
 
-    @XmlTransient
-    public Collection<PeminjamanItem> getPeminjamanItemCollection() {
-        return peminjamanItemCollection;
+    public int getJumlahTersedia() {
+        return jumlahTersedia;
     }
 
-    public void setPeminjamanItemCollection(Collection<PeminjamanItem> peminjamanItemCollection) {
-        this.peminjamanItemCollection = peminjamanItemCollection;
+    public void setJumlahTersedia(int jumlahTersedia) {
+        this.jumlahTersedia = jumlahTersedia;
     }
 
     public Kategori getIdKategori() {
@@ -179,6 +177,15 @@ public class Alat implements Serializable {
 
     public void setIdKategori(Kategori idKategori) {
         this.idKategori = idKategori;
+    }
+
+    @XmlTransient
+    public Collection<PeminjamanItem> getPeminjamanItemCollection() {
+        return peminjamanItemCollection;
+    }
+
+    public void setPeminjamanItemCollection(Collection<PeminjamanItem> peminjamanItemCollection) {
+        this.peminjamanItemCollection = peminjamanItemCollection;
     }
 
     @Override
@@ -204,14 +211,6 @@ public class Alat implements Serializable {
     @Override
     public String toString() {
         return "models.Alat[ idAlat=" + idAlat + " ]";
-    }
-
-    public int getJumlahTersedia() {
-        return jumlahTersedia;
-    }
-
-    public void setJumlahTersedia(int jumlahTersedia) {
-        this.jumlahTersedia = jumlahTersedia;
     }
     
 }

@@ -71,11 +71,11 @@ public class Peminjaman implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_admin")
     private int idAdmin;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPeminjaman")
+    private Collection<PeminjamanItem> peminjamanItemCollection;
     @JoinColumn(name = "id_user", referencedColumnName = "id_user")
     @ManyToOne(optional = false)
     private User idUser;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPeminjaman")
-    private Collection<PeminjamanItem> peminjamanItemCollection;
 
     public Peminjaman() {
     }
@@ -150,14 +150,6 @@ public class Peminjaman implements Serializable {
         this.idAdmin = idAdmin;
     }
 
-    public User getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
-    }
-
     @XmlTransient
     public Collection<PeminjamanItem> getPeminjamanItemCollection() {
         return peminjamanItemCollection;
@@ -165,6 +157,14 @@ public class Peminjaman implements Serializable {
 
     public void setPeminjamanItemCollection(Collection<PeminjamanItem> peminjamanItemCollection) {
         this.peminjamanItemCollection = peminjamanItemCollection;
+    }
+
+    public User getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
     }
 
     @Override
