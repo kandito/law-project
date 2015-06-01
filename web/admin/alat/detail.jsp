@@ -64,7 +64,7 @@
 					<h3><%= alat.getNama() %>(<%= alat.getKodeAlat() %>) </h3>
 					<p><%= alat.getKeterangan() %></p>
 					<h5>Rp. <%= alat.getBiaya() %> /hari</h5>
-                                        <h5>Jumlah : <%= alat.getJumlah() %></h5>
+                                        <h5>Jumlah : <%= alat.getJumlahTersedia() %></h5>
                                         <hr>
                                         <a href="${pageContext.request.contextPath}/alat/delete?id=<%= alat.getIdAlat() %>" onclick="return confirm('Anda yakin ingin menghapus?')">Hapus</a> |
                                         <a href="${pageContext.request.contextPath}/admin/alat/update.jsp?id=<%= alat.getIdAlat() %>">Ubah</a>

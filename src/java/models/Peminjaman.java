@@ -42,7 +42,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Peminjaman.findByTanggalPinjam", query = "SELECT p FROM Peminjaman p WHERE p.tanggalPinjam = :tanggalPinjam"),
     @NamedQuery(name = "Peminjaman.findByTanggalBalik", query = "SELECT p FROM Peminjaman p WHERE p.tanggalBalik = :tanggalBalik"),
     @NamedQuery(name = "Peminjaman.findByStatus", query = "SELECT p FROM Peminjaman p WHERE p.status = :status"),
-    @NamedQuery(name = "Peminjaman.findByIdAdmin", query = "SELECT p FROM Peminjaman p WHERE p.idAdmin = :idAdmin")})
+    @NamedQuery(name = "Peminjaman.findByIdAdmin", query = "SELECT p FROM Peminjaman p WHERE p.idAdmin = :idAdmin"),
+    @NamedQuery(name = "Peminjaman.findByIdUser", query = "SELECT p FROM Peminjaman p WHERE p.idUser = :idUser"),
+})
+
 public class Peminjaman implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

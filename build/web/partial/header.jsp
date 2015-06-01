@@ -7,10 +7,10 @@
             </div>
             <div class="h_icon">
                 <ul class="icon1 sub-icon1">
-                    <li><a href="profil.html"><img src="${pageContext.request.contextPath}/img/user32.png" alt="" height="60px" width="60px" class="active-icon"></a></li>
+                    <li><a href="${pageContext.request.contextPath}/history.jsp"><img src="${pageContext.request.contextPath}/img/user32.png" alt="" height="60px" width="60px" class="active-icon"></a></li>
                     <li>&nbsp;&nbsp;</li>
                     <li>&nbsp;&nbsp;</li>
-                    <li><a href="cart-user.html"><img src="${pageContext.request.contextPath}/img/shopping-cart-insert-icon.png" alt="" height="60px" width="60px" class="active-icon"></a></li> 
+                    <li><a href="${pageContext.request.contextPath}/cart.jsp"><img src="${pageContext.request.contextPath}/img/shopping-cart-insert-icon.png" alt="" height="60px" width="60px" class="active-icon"></a></li> 
                 </ul>
             </div>
             <div class="clear"></div>

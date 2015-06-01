@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 28 Apr 2015 pada 06.47
+-- Generation Time: 01 Jun 2015 pada 11.38
 -- Versi Server: 5.6.16
--- PHP Version: 5.5.11
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `alat` (
 --
 
 INSERT INTO `alat` (`id_alat`, `kode_alat`, `nama`, `spesifikasi`, `keterangan`, `id_kategori`, `biaya`, `gambar`, `jumlah`, `jumlah_tersedia`) VALUES
-(2, '1111', 'Tenda', 'Bahan bagus', 'Tenda tenda', 6, 50000, 'tenda.png', 10, 10),
+(2, '1111', 'Tenda', 'Bahan bagus', 'Tenda tenda', 6, 50000, 'tenda.png', 10, 3),
 (3, '1212121', 'Tongkat', 'Stenless', 'Cocok untuk naik gunung bersalju.', 6, 10000, 'tongkat.jpg', 20, 20),
 (7, 'A123', 'Sepatu Gunung', '', '', 6, 10000, 'sepatu-gunung.jpg', 0, 0),
 (8, 'A124', 'Kompor', 'Kompor baru', 'Kompor paling keren', 6, 5000, 'kompor.jpg', 10, 10);
@@ -118,14 +118,15 @@ CREATE TABLE IF NOT EXISTS `peminjaman` (
   PRIMARY KEY (`id_peminjaman`),
   KEY `id_user` (`id_user`),
   KEY `id_admin` (`id_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
 INSERT INTO `peminjaman` (`id_peminjaman`, `total_biaya`, `keterangan`, `tanggal_pinjam`, `tanggal_balik`, `status`, `id_user`, `id_admin`) VALUES
-(3, 300000, 'Buat naik gunung fuji', '2015-04-26', '2015-04-30', 1, 5, 1);
+(3, 300000, 'Buat naik gunung fuji', '2015-04-26', '2015-04-30', 1, 5, 1),
+(9, 350000, '', '0006-12-06', '0006-12-06', 2, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `peminjaman_item` (
   PRIMARY KEY (`id_peminjaman_item`),
   KEY `id_alat` (`id_alat`),
   KEY `id_peminjaman` (`id_peminjaman`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data untuk tabel `peminjaman_item`
@@ -150,7 +151,8 @@ CREATE TABLE IF NOT EXISTS `peminjaman_item` (
 
 INSERT INTO `peminjaman_item` (`id_peminjaman_item`, `id_alat`, `id_peminjaman`, `keterangan`, `jumlah`) VALUES
 (1, 2, 3, '', 0),
-(2, 7, 3, '', 0);
+(2, 7, 3, '', 0),
+(11, 2, 9, '', 7);
 
 -- --------------------------------------------------------
 
@@ -193,7 +195,7 @@ ALTER TABLE `alat`
 -- Ketidakleluasaan untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `peminjaman_item`

@@ -85,6 +85,9 @@
                         %>
                     </table>
                     <hr>
+                    <%
+                    if (cart != null) {
+                    %>
                     <div class="">
                         <h3 style="font-size: 1.5em;">Info peminjam</h3>
                         <form action="<%= request.getContextPath()%>/peminjaman/create" method="POST" accept-charset="utf-8">
@@ -100,6 +103,7 @@
                             <input type="submit" name="" value="CHECKOUT" class="price">
                         </form>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </div><!-- END wrap class -->

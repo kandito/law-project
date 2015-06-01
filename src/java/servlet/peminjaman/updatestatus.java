@@ -14,8 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Alat;
 import models.DatabaseInfo;
 import models.Peminjaman;
+import models.PeminjamanItem;
 
 /**
  *
@@ -61,6 +63,20 @@ public class updatestatus extends HttpServlet {
         tx.begin();
         int status = Integer.parseInt(request.getParameter("status"));
         peminjaman.setStatus(status);
+        
+        for(PeminjamanItem pi : peminjaman.getPeminjamanItemCollection()) {
+            Alat alat = em.find(Alat.class, pi.getIdAlat().getIdAlat());
+            if(status == 2) {
+                int newStock = alat.getJumlah() - pi.getJumlah();
+                alat.setJumlahTersedia(newStock);
+            }
+            
+            if(status == 3) {
+                int newStock = alat.getJumlah() + pi.getJumlah();
+                alat.setJumlahTersedia(newStock);
+            }
+        }
+        
         tx.commit();
         em.close();
         
