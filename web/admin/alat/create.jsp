@@ -29,7 +29,7 @@
             <div class="main">
             <h2 class="style top">Buat Alat</h2>
             <hr>
-            <form action="${pageContext.request.contextPath}/alat/create" method="POST">
+            <form action="${pageContext.request.contextPath}/alat/create" method="POST" enctype="multipart/form-data">
                 <div class="form-item">
                     <div class="form-label">
                         <label>Kode</label>
@@ -53,7 +53,7 @@
                         <label>Gambar</label>
                     </div>
                     <div class="form-input">
-                        <input type="text" name="gambar">
+                        <input type="file" name="gambar">
                     </div>
                 </div>
                 

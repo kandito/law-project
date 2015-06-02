@@ -69,7 +69,7 @@ public class updatestatus extends HttpServlet {
             if(status == 2) {
                 int newStock = alat.getJumlah() - pi.getJumlah();
                 alat.setJumlahTersedia(newStock);
-                
+                 
                 //add transaction
                 String token = "e5f2a0f34f1662b3";
                 String deskripsi = "Peminjaman " + peminjaman.getIdUser().getNamaLengkap() + " #" + peminjaman.getIdPeminjaman();
