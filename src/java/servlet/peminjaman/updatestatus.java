@@ -69,6 +69,17 @@ public class updatestatus extends HttpServlet {
             if(status == 2) {
                 int newStock = alat.getJumlah() - pi.getJumlah();
                 alat.setJumlahTersedia(newStock);
+                
+                //add transaction
+                String token = "e5f2a0f34f1662b3";
+                String deskripsi = "Peminjaman " + peminjaman.getIdUser().getNamaLengkap() + " #" + peminjaman.getIdPeminjaman();
+                double nominal = (double) peminjaman.getTotalBiaya();
+                int idJenis = 0;
+                int idCategory = 13;
+                String matauang = "IDR";
+                
+                int result = addTransaction(token, nominal, deskripsi, idJenis, idCategory, matauang);
+                System.out.println("result " + result);
             }
             
             if(status == 3) {
@@ -121,5 +132,11 @@ public class updatestatus extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static int addTransaction(java.lang.String token, double nominal, java.lang.String deskripsi, int idJenis, int idCategory, java.lang.String matauang) {
+        exes.ws.Service_Service service = new exes.ws.Service_Service();
+        exes.ws.Service port = service.getServicePort();
+        return port.addTransaction(token, nominal, deskripsi, idJenis, idCategory, matauang);
+    }
 
 }

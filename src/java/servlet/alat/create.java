@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import models.Kategori;
  * @author Kandito Agung
  */
 @WebServlet(name = "alatcreate", urlPatterns = {"/alat/create"})
+@MultipartConfig
 public class create extends HttpServlet {
 
     /**

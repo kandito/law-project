@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import models.PeminjamanItem;
 import models.User;
 
-@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2015-06-01T16:30:20")
+@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2015-06-02T13:37:43")
 @StaticMetamodel(Peminjaman.class)
 public class Peminjaman_ { 
 

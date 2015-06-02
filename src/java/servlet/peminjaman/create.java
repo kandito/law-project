@@ -74,7 +74,6 @@ public class create extends HttpServlet {
         
         HashMap<Integer, Integer> items = cart.getCartItem();
         
-        long total_biaya = 0;
         for (int key : items.keySet()) {
             Alat alat = em.find(Alat.class, key);
             PeminjamanItem pi = new PeminjamanItem();
@@ -83,6 +82,7 @@ public class create extends HttpServlet {
             pi.setKeterangan("");
             pi.setIdPeminjaman(peminjaman);
             em.persist(pi);
+            System.out.println(pi.toString());
         }
         
         tx.commit();

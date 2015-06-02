@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://exes.cloudapp.net/service?wsdl" uri="src/conf/xml-resources/web-service-references/service/wsdl/exes.cloudapp.net/service.wsdl"/>
+    <system systemId="http://exes.cloudapp.net:80/service?xsd=1" uri="src/conf/xml-resources/web-service-references/service/wsdl/exes.cloudapp.net_80/service.xsd_1.xsd"/>
+</catalog>
