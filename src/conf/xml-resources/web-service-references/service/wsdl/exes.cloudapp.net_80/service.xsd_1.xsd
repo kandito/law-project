@@ -20,6 +20,14 @@
 
 <xs:element name="getCategoryResponse" type="tns:getCategoryResponse" />
 
+<xs:element name="getMataUang" type="tns:getMataUang" />
+
+<xs:element name="getMataUangResponse" type="tns:getMataUangResponse" />
+
+<xs:element name="getTransaction" type="tns:getTransaction" />
+
+<xs:element name="getTransactionResponse" type="tns:getTransactionResponse" />
+
 <xs:element name="getUser" type="tns:getUser" />
 
 <xs:element name="getUserResponse" type="tns:getUserResponse" />
@@ -27,10 +35,6 @@
 <xs:element name="hello" type="tns:hello" />
 
 <xs:element name="helloResponse" type="tns:helloResponse" />
-
-<xs:element name="operation" type="tns:operation" />
-
-<xs:element name="operationResponse" type="tns:operationResponse" />
 
 <xs:element name="updateCategory" type="tns:updateCategory" />
 
@@ -53,13 +57,27 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="operation">
+<xs:complexType name="addCategory">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0" />
+<xs:element name="idJenis" type="xs:int" />
+<xs:element name="nama" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addCategoryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getTransaction">
 <xs:sequence>
 <xs:element name="token" type="xs:string" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="operationResponse">
+<xs:complexType name="getTransactionResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:transactionWrapper" minOccurs="0" />
 </xs:sequence>
@@ -82,20 +100,6 @@
 <xs:element name="jenis" type="xs:int" minOccurs="0" />
 <xs:element name="mataUang" type="xs:string" minOccurs="0" />
 <xs:element name="tglTransaksi" type="xs:dateTime" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="addCategory">
-<xs:sequence>
-<xs:element name="token" type="xs:string" minOccurs="0" />
-<xs:element name="idJenis" type="xs:int" />
-<xs:element name="nama" type="xs:string" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="addCategoryResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int" />
 </xs:sequence>
 </xs:complexType>
 
@@ -154,6 +158,22 @@
 <xs:sequence>
 <xs:element name="return" type="xs:int" />
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMataUang">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMataUangResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:mataUangWrapper" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="mataUangWrapper">
+<xs:sequence />
 </xs:complexType>
 
 <xs:complexType name="hello">

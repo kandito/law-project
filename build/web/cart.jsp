@@ -24,6 +24,7 @@
             String username = (String) session.getAttribute("username");
             if(username == null) {
                 response.sendRedirect(request.getContextPath());
+                return;
             }
         %>
         <title>Cart - Sistem Peminjaman Mapala UI</title>

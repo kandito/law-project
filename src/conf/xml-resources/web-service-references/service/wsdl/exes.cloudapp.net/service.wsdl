@@ -52,11 +52,17 @@
 <message name="getUserResponse">
 <part name="parameters" element="tns:getUserResponse" />
 </message>
-<message name="operation">
-<part name="parameters" element="tns:operation" />
+<message name="getMataUang">
+<part name="parameters" element="tns:getMataUang" />
 </message>
-<message name="operationResponse">
-<part name="parameters" element="tns:operationResponse" />
+<message name="getMataUangResponse">
+<part name="parameters" element="tns:getMataUangResponse" />
+</message>
+<message name="getTransaction">
+<part name="parameters" element="tns:getTransaction" />
+</message>
+<message name="getTransactionResponse">
+<part name="parameters" element="tns:getTransactionResponse" />
 </message>
 <message name="hello">
 <part name="parameters" element="tns:hello" />
@@ -97,9 +103,13 @@
 <input wsam:Action="http://WS/service/getUserRequest" message="tns:getUser" />
 <output wsam:Action="http://WS/service/getUserResponse" message="tns:getUserResponse" />
 </operation>
-<operation name="operation">
-<input wsam:Action="http://WS/service/operationRequest" message="tns:operation" />
-<output wsam:Action="http://WS/service/operationResponse" message="tns:operationResponse" />
+<operation name="getMataUang">
+<input wsam:Action="http://WS/service/getMataUangRequest" message="tns:getMataUang" />
+<output wsam:Action="http://WS/service/getMataUangResponse" message="tns:getMataUangResponse" />
+</operation>
+<operation name="getTransaction">
+<input wsam:Action="http://WS/service/getTransactionRequest" message="tns:getTransaction" />
+<output wsam:Action="http://WS/service/getTransactionResponse" message="tns:getTransactionResponse" />
 </operation>
 <operation name="hello">
 <input wsam:Action="http://WS/service/helloRequest" message="tns:hello" />
@@ -180,7 +190,16 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="operation">
+<operation name="getMataUang">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getTransaction">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />

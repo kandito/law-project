@@ -29,6 +29,7 @@
                     <li><a href="${pageContext.request.contextPath}/admin/alat">Daftar Alat</a></li> |
                     <li><a href="${pageContext.request.contextPath}/admin/user">Pengguna</a></li> |
                     <li><a href="${pageContext.request.contextPath}/admin/peminjaman">Peminjaman</a></li> |
+                    <li><a href="${pageContext.request.contextPath}/admin/peminjaman/report.jsp">Laporan Keuangan</a></li> |
                     <li><a href="${pageContext.request.contextPath}/admin/logout">Logout (<%= session.getAttribute("username")%>)</a></li>
                         <% } else if (session.getAttribute("username") != null && session.getAttribute("role").equals("user")) {%>
                     <li><a href="${pageContext.request.contextPath}">Beranda</a></li> |

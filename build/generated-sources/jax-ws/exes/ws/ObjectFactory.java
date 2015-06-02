@@ -24,10 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetTransactionResponse_QNAME = new QName("http://WS/", "getTransactionResponse");
     private final static QName _GetUserResponse_QNAME = new QName("http://WS/", "getUserResponse");
     private final static QName _GetCategoryResponse_QNAME = new QName("http://WS/", "getCategoryResponse");
     private final static QName _GetUser_QNAME = new QName("http://WS/", "getUser");
-    private final static QName _OperationResponse_QNAME = new QName("http://WS/", "operationResponse");
     private final static QName _UpdateCategory_QNAME = new QName("http://WS/", "updateCategory");
     private final static QName _UpdateTransaction_QNAME = new QName("http://WS/", "updateTransaction");
     private final static QName _AddCategoryResponse_QNAME = new QName("http://WS/", "addCategoryResponse");
@@ -37,19 +37,29 @@ public class ObjectFactory {
     private final static QName _DeleteCategory_QNAME = new QName("http://WS/", "deleteCategory");
     private final static QName _AddCategory_QNAME = new QName("http://WS/", "addCategory");
     private final static QName _AddTransactionResponse_QNAME = new QName("http://WS/", "addTransactionResponse");
+    private final static QName _GetMataUangResponse_QNAME = new QName("http://WS/", "getMataUangResponse");
     private final static QName _UpdateTransactionResponse_QNAME = new QName("http://WS/", "updateTransactionResponse");
     private final static QName _HelloResponse_QNAME = new QName("http://WS/", "helloResponse");
+    private final static QName _GetMataUang_QNAME = new QName("http://WS/", "getMataUang");
     private final static QName _Hello_QNAME = new QName("http://WS/", "hello");
     private final static QName _AddTransaction_QNAME = new QName("http://WS/", "addTransaction");
     private final static QName _UpdateCategoryResponse_QNAME = new QName("http://WS/", "updateCategoryResponse");
-    private final static QName _Operation_QNAME = new QName("http://WS/", "operation");
     private final static QName _DeleteCategoryResponse_QNAME = new QName("http://WS/", "deleteCategoryResponse");
+    private final static QName _GetTransaction_QNAME = new QName("http://WS/", "getTransaction");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: exes.ws
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link GetTransactionResponse }
+     * 
+     */
+    public GetTransactionResponse createGetTransactionResponse() {
+        return new GetTransactionResponse();
     }
 
     /**
@@ -74,14 +84,6 @@ public class ObjectFactory {
      */
     public GetUser createGetUser() {
         return new GetUser();
-    }
-
-    /**
-     * Create an instance of {@link OperationResponse }
-     * 
-     */
-    public OperationResponse createOperationResponse() {
-        return new OperationResponse();
     }
 
     /**
@@ -165,6 +167,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMataUangResponse }
+     * 
+     */
+    public GetMataUangResponse createGetMataUangResponse() {
+        return new GetMataUangResponse();
+    }
+
+    /**
      * Create an instance of {@link HelloResponse }
      * 
      */
@@ -189,6 +199,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMataUang }
+     * 
+     */
+    public GetMataUang createGetMataUang() {
+        return new GetMataUang();
+    }
+
+    /**
      * Create an instance of {@link Hello }
      * 
      */
@@ -205,11 +223,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Operation }
+     * Create an instance of {@link GetTransaction }
      * 
      */
-    public Operation createOperation() {
-        return new Operation();
+    public GetTransaction createGetTransaction() {
+        return new GetTransaction();
     }
 
     /**
@@ -229,6 +247,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link MataUangWrapper }
+     * 
+     */
+    public MataUangWrapper createMataUangWrapper() {
+        return new MataUangWrapper();
+    }
+
+    /**
      * Create an instance of {@link Category }
      * 
      */
@@ -242,6 +268,15 @@ public class ObjectFactory {
      */
     public Transaction createTransaction() {
         return new Transaction();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTransactionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WS/", name = "getTransactionResponse")
+    public JAXBElement<GetTransactionResponse> createGetTransactionResponse(GetTransactionResponse value) {
+        return new JAXBElement<GetTransactionResponse>(_GetTransactionResponse_QNAME, GetTransactionResponse.class, null, value);
     }
 
     /**
@@ -269,15 +304,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WS/", name = "getUser")
     public JAXBElement<GetUser> createGetUser(GetUser value) {
         return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OperationResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WS/", name = "operationResponse")
-    public JAXBElement<OperationResponse> createOperationResponse(OperationResponse value) {
-        return new JAXBElement<OperationResponse>(_OperationResponse_QNAME, OperationResponse.class, null, value);
     }
 
     /**
@@ -362,6 +388,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMataUangResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WS/", name = "getMataUangResponse")
+    public JAXBElement<GetMataUangResponse> createGetMataUangResponse(GetMataUangResponse value) {
+        return new JAXBElement<GetMataUangResponse>(_GetMataUangResponse_QNAME, GetMataUangResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdateTransactionResponse }{@code >}}
      * 
      */
@@ -377,6 +412,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://WS/", name = "helloResponse")
     public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
         return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMataUang }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WS/", name = "getMataUang")
+    public JAXBElement<GetMataUang> createGetMataUang(GetMataUang value) {
+        return new JAXBElement<GetMataUang>(_GetMataUang_QNAME, GetMataUang.class, null, value);
     }
 
     /**
@@ -407,21 +451,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Operation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://WS/", name = "operation")
-    public JAXBElement<Operation> createOperation(Operation value) {
-        return new JAXBElement<Operation>(_Operation_QNAME, Operation.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteCategoryResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://WS/", name = "deleteCategoryResponse")
     public JAXBElement<DeleteCategoryResponse> createDeleteCategoryResponse(DeleteCategoryResponse value) {
         return new JAXBElement<DeleteCategoryResponse>(_DeleteCategoryResponse_QNAME, DeleteCategoryResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTransaction }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://WS/", name = "getTransaction")
+    public JAXBElement<GetTransaction> createGetTransaction(GetTransaction value) {
+        return new JAXBElement<GetTransaction>(_GetTransaction_QNAME, GetTransaction.class, null, value);
     }
 
 }

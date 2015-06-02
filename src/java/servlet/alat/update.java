@@ -67,7 +67,9 @@ public class update extends HttpServlet {
         alat.setKeterangan(request.getParameter("keterangan"));
         alat.setSpesifikasi(request.getParameter("spesifikasi"));
         alat.setBiaya(Long.parseLong(request.getParameter("biaya")));
-        alat.setGambar(request.getParameter("gambar"));
+        //alat.setGambar(request.getParameter("gambar"));
+        int newStock = alat.getJumlah() - Integer.parseInt(request.getParameter("jumlah"));
+        alat.setJumlahTersedia(alat.getJumlahTersedia() - newStock);
         alat.setJumlah(Integer.parseInt(request.getParameter("jumlah")));
         
         int id_kategori = Integer.parseInt(request.getParameter("id_kategori"));

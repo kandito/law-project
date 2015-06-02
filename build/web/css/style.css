@@ -1589,6 +1589,11 @@ p.para{
     width: 100%;
     margin-top: 15px;
 }
+
+.table-center {
+    text-align: center;
+}
+
 .table-content td {
     text-transform: none !important;
 }

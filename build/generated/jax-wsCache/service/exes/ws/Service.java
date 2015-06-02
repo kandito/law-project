@@ -202,14 +202,29 @@ public interface Service {
      * 
      * @param token
      * @return
+     *     returns exes.ws.MataUangWrapper
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMataUang", targetNamespace = "http://WS/", className = "exes.ws.GetMataUang")
+    @ResponseWrapper(localName = "getMataUangResponse", targetNamespace = "http://WS/", className = "exes.ws.GetMataUangResponse")
+    @Action(input = "http://WS/service/getMataUangRequest", output = "http://WS/service/getMataUangResponse")
+    public MataUangWrapper getMataUang(
+        @WebParam(name = "token", targetNamespace = "")
+        String token);
+
+    /**
+     * 
+     * @param token
+     * @return
      *     returns exes.ws.TransactionWrapper
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "operation", targetNamespace = "http://WS/", className = "exes.ws.Operation")
-    @ResponseWrapper(localName = "operationResponse", targetNamespace = "http://WS/", className = "exes.ws.OperationResponse")
-    @Action(input = "http://WS/service/operationRequest", output = "http://WS/service/operationResponse")
-    public TransactionWrapper operation(
+    @RequestWrapper(localName = "getTransaction", targetNamespace = "http://WS/", className = "exes.ws.GetTransaction")
+    @ResponseWrapper(localName = "getTransactionResponse", targetNamespace = "http://WS/", className = "exes.ws.GetTransactionResponse")
+    @Action(input = "http://WS/service/getTransactionRequest", output = "http://WS/service/getTransactionResponse")
+    public TransactionWrapper getTransaction(
         @WebParam(name = "token", targetNamespace = "")
         String token);
 

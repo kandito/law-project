@@ -73,16 +73,6 @@
                                 <input type="text" name="nama" value="<%= alat.getNama()%>">
                             </div>
                         </div>
-
-                        <div class="form-item">
-                            <div class="form-label">
-                                <label>Gambar</label>
-                            </div>
-                            <div class="form-input">
-                                <input type="text" name="gambar" value="<%= alat.getGambar()%>">
-                            </div>
-                        </div>
-
                         <div class="form-item">
                             <div class="form-label">
                                 <label>Jumlah</label>

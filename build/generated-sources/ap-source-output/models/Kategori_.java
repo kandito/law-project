@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import models.Alat;
 
-@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2015-06-02T15:44:04")
+@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2015-06-02T22:11:14")
 @StaticMetamodel(Kategori.class)
 public class Kategori_ { 
 
