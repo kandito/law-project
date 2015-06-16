@@ -58,7 +58,7 @@
                             <label>Username</label>
                         </div>
                         <div class="form-input">
-                            <label class="label-value"><a href="<%= peminjaman.getIdUser().getIdUser()%>"><%= peminjaman.getIdUser().getUsername()%></a></label>
+                            <label class="label-value"><a href="<%= request.getContextPath()%>/admin/user/detail.jsp?id=<%= peminjaman.getIdUser().getIdUser()%>"><%= peminjaman.getIdUser().getUsername()%></a></label>
                         </div>
                     </div>
 

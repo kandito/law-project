@@ -3,7 +3,7 @@
     <div class="wrap">
         <div class="header">
             <div class="logo">
-                <a href="index.html"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""/> </a>
+                <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""/> </a>
             </div>
             <div class="h_icon">
                 <ul class="icon1 sub-icon1">
@@ -48,11 +48,22 @@
                 <nav class="nav">	        	
                     <a href="#" id="w3-menu-trigger"> </a>
                     <ul class="nav-list" style="">
-                        <li class="nav-item"><a href="index-user.html">Beranda</a></li></li>
-                        <li class="nav-item"><a href="alat-user.html">Daftar Alat</a></li>
-                        <li class="nav-item"><a href="profil-user.html">Profil</a></li> 
-                        <li class="nav-item"><a href="riwayat-user.html">Riwayat</a></li>
-
+                        <% if (session.getAttribute("username") != null && session.getAttribute("role").equals("admin")) {%>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}">Beranda</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/alat">Daftar Alat</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/user">Pengguna</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/peminjaman">Peminjaman</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/peminjaman/report.jsp">Laporan Keuangan</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/logout">Logout (<%= session.getAttribute("username")%>)</a></li>
+                            <% } else if (session.getAttribute("username") != null && session.getAttribute("role").equals("user")) {%>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}">Beranda</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/alat">Daftar Alat</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/user/logout">Logout (<%= session.getAttribute("username")%>)</a></li>
+                            <% } else { %>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}">Beranda</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/alat">Daftar Alat</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin">Admin</a></li>
+                            <% }%>
                     </ul>
                 </nav>
                 <div class="clear"> </div>
